@@ -39,10 +39,8 @@ function CheckLoop(client, interaction, cargoOut, heliOut){
                         break;
                 }
             }
-            heliOut = heliOutCurrently;
-            cargoOut = cargoOutCurrently;
         });
-        setTimeout(CheckLoop, 5000, client, interaction, cargoOut, heliOut);
+        setTimeout(CheckLoop, 5000, client, interaction, cargoOutCurrently, heliOutCurrently);
     }
 }
 
