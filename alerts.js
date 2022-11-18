@@ -22,7 +22,7 @@ function CheckLoop(client, interaction){
                             .setColor(0x00AE86)
                             .setTimestamp()
                             interaction.channel.send({embeds: [embed]});
-                            client.sendChatMessage(':: Cargo\'s out');
+                            //client.sendChatMessage(':: Cargo\'s out');
                         }
                         break;
                     case 8:
@@ -34,7 +34,7 @@ function CheckLoop(client, interaction){
                                 .setColor(0x00AE86)
                                 .setTimestamp()
                                 interaction.channel.send({embeds: [embed]});
-                                client.sendChatMessage(':: Heli\'s out');
+                                //client.sendChatMessage(':: Heli\'s out');
                             }
                         break;
                     default:
