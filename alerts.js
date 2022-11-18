@@ -2,10 +2,8 @@ const RustPlus = require("@liamcottle/rustplus.js");
 let {EmbedBuilder} = require('discord.js');
 
 let connected;
-let cargoOut = false;
-let heliOut = false;
 
-function CheckLoop(client, interaction){
+function CheckLoop(client, interaction, cargoOut, heliOut){
     if (connected){
         let cargoOutCurrently = false
         let heliOutCurrently = false
@@ -44,7 +42,7 @@ function CheckLoop(client, interaction){
             heliOut = heliOutCurrently;
             cargoOut = cargoOutCurrently;
         });
-        setTimeout(CheckLoop, 5000, client, interaction);
+        setTimeout(CheckLoop, 5000, client, interaction, cargoOut, heliOut);
     }
 }
 
