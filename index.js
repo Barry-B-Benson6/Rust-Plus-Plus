@@ -79,21 +79,3 @@ client.on('interactionCreate', async interaction => {
 });
 
 client.login(process.env.TOKEN);     
-
-
-// const RustPlus = require("@liamcottle/rustplus.js");
-
-// let client = new RustPlus("139.99.145.39", "28083", "76561198081697775", "-707171332", false);
-
-// client.on("connected", () => {
-//     console.log("Connected!");
-//     client.sendTeamMessage("Linked");
-// });
-
-// client.on("message", (message) => {
-//     if (message.broadcast) {
-//         console.log(message.broadcast.teamMessage.message.message);
-//     }    
-// });
-
-// client.connect();
