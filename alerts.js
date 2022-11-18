@@ -4,44 +4,50 @@ let {EmbedBuilder} = require('discord.js');
 let connected;
 
 function CheckLoop(client, interaction, cargoOut, heliOut){
-    if (connected){
-        let cargoOutCurrently = false
-        let heliOutCurrently = false
-        client.getMapMarkers((markers) => {
-            console.log(markers.response.mapMarkers.markers);
-            for (let i = 0; i < markers.response.mapMarkers.markers.length; i++){
-                switch (markers.response.mapMarkers.markers[i].type){
-                    case 5:
-                        if (!cargoOut){
+    let cargoOutCurrently = false
+    let heliOutCurrently = false
+    setInterval(() => {
+        if (connected){
+            cargoOut = cargoOutCurrently;
+            heliOut = heliOutCurrently;
+            cargoOutCurrently = false;
+            heliOutCurrently = false;
+            client.getMapMarkers((markers) => {
+                for (let i = 0; i < markers.response.mapMarkers.markers.length; i++){
+                    switch (markers.response.mapMarkers.markers[i].type){
+                        case 5:
                             cargoOutCurrently = true;
-                            let embed = new EmbedBuilder()
-                            .setTitle('Cargo Ship')
-                            .setDescription('Cargoship is coming get the mini ready')
-                            .setColor(0x00AE86)
-                            .setTimestamp()
-                            interaction.channel.send({embeds: [embed]});
-                            //client.sendChatMessage(':: Cargo\'s out');
-                        }
-                        break;
-                    case 8:
-                            if (!heliOut){
-                                heliOutCurrently = true;
+                            console.log('heli',cargoOutCurrently)
+                            if (!cargoOut){
                                 let embed = new EmbedBuilder()
-                                .setTitle('Heli')
-                                .setDescription('Heli\'s coming get the m2\'s')
+                                .setTitle('Cargo Ship')
+                                .setDescription('Cargoship is coming get the mini ready')
                                 .setColor(0x00AE86)
                                 .setTimestamp()
                                 interaction.channel.send({embeds: [embed]});
-                                //client.sendChatMessage(':: Heli\'s out');
+                                //client.sendChatMessage(':: Cargo\'s out');
                             }
-                        break;
-                    default:
-                        break;
+                            break;
+                        case -1:
+                            heliOutCurrently = true;
+                            console.log('heli',heliOutCurrently)
+                                if (!heliOut){
+                                    let embed = new EmbedBuilder()
+                                    .setTitle('Heli')
+                                    .setDescription('Heli\'s coming get the m2\'s')
+                                    .setColor(0x00AE86)
+                                    .setTimestamp()
+                                    interaction.channel.send({embeds: [embed]});
+                                    //client.sendChatMessage(':: Heli\'s out');
+                                }
+                            break;
+                        default:
+                            break;
+                    }
                 }
-            }
-        });
-        setTimeout(CheckLoop, 5000, client, interaction, cargoOutCurrently, heliOutCurrently);
-    }
+            });
+        }
+    }, 5000);
 }
 
 // enum AppMarkerType {
