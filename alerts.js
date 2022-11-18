@@ -70,7 +70,7 @@ module.exports = {
             .setColor('#00ff00')
             .setTimestamp()
             interaction.reply({embeds: [embed], ephemeral: false});
-            CheckLoop(client, interaction);
+            CheckLoop(client, interaction, false, false);
         });
 
         client.on('error', (error) => {
